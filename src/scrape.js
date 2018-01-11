@@ -42,7 +42,7 @@ function formatUrl(url){
 	return;
 }
 /*
- *	Prepares links and displays them to end user
+ *	Prepares links and displays them to end user in HTML.
  *
  *	If no links are passed in, display message.
  *
@@ -51,12 +51,13 @@ function formatUrl(url){
 function displayLinks(anchors, url){
 	//none found
 	if(anchors.length == 0){
-		document.getElementById('results').innerHTML = "Sorry. No links were found on this page. Are you sure you typed the correct url?"
+		$('#results').innerHTML = "Sorry. No links were found on this page. Are you sure you typed the correct url?"
 	}
 	else{
-		document.getElementById('results').innerHTML = `<h2>Results for ${url}</h2>`;
-	
+		$('#results').innerHTML = `<h2>Results for ${url}</h2>`;
 	}
+
+	//go through anchors array, adding one by one to DOM.
 	for(let i in anchors){
 		$('#results').append(`${anchors[i]}<br/>`);
 		formatUrl(url);
@@ -74,7 +75,7 @@ function displayLinks(anchors, url){
  */
 function downloadResults(){
 
-	//there are no links to display
+	//there are no links to display, download shouldn't work
 	if($('#results').children().length == 0 ){
 		window.alert('Please scrape a link first.')
 		return;
