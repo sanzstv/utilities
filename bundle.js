@@ -228,7 +228,6 @@ function formatUrl(url){
 	let formatted = $('#results a:last');
 	formatted[0].target="_blank";
 	let file = /file:\/\//;
-	console.log(formatted[0].href );
 	formatted[0].href = formatted[0].href.replace(file, url);
 	return;
 }
@@ -273,8 +272,9 @@ function downloadResults(){
 	}
 	let filename = "links";
 	let body = $('#results').html();
+	body = '<!DOCTYPE html><html lang ="en"><body>'+body+'</body></html>';
 	let text_file = new Blob([body],{type: "text/plain;charset=utf-8"});
-	FileSaver.saveAs(text_file, filename+".txt");
+	FileSaver.saveAs(text_file, filename+".html");
 	return;
 }
 },{"file-saver":1}]},{},[2]);
